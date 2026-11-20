@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="tt-bg" cx="50%" cy="10%" r="95%">
+      <stop offset="0" stop-color="#4a2a99"/><stop offset=".55" stop-color="#22175a"/><stop offset="1" stop-color="#140d33"/>
+    </radialGradient>
+    <linearGradient id="tt-bub" gradientUnits="userSpaceOnUse" x1="72" y1="196" x2="352" y2="478">
+      <stop offset="0" stop-color="#ff6b97"/><stop offset=".5" stop-color="#ef3e36"/><stop offset="1" stop-color="#ffb627"/>
+    </linearGradient>
+    <linearGradient id="tt-tail" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff5c8a"/><stop offset="1" stop-color="#f0503f"/>
+    </linearGradient>
+    <filter id="tt-sh" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000" flood-opacity=".35"/>
+    </filter>
+  </defs>
+  <rect width="512" height="512" fill="url(#tt-bg)"/>
+  <g transform="translate(256 256) scale(.80) translate(-256 -270)">
+  <path d="M40 62 Q 256 138 472 62" stroke="#fff6e5" stroke-opacity=".35" stroke-width="4" fill="none"/>
+  <circle cx="84" cy="80" r="22" fill="#ffb627" opacity=".22"/><circle cx="84" cy="80" r="11" fill="#ffb627"/><circle cx="170" cy="104" r="22" fill="#ef3e36" opacity=".22"/><circle cx="170" cy="104" r="11" fill="#ef3e36"/><circle cx="256" cy="112" r="22" fill="#2ec4b6" opacity=".22"/><circle cx="256" cy="112" r="11" fill="#2ec4b6"/><circle cx="342" cy="104" r="22" fill="#ff5c8a" opacity=".22"/><circle cx="342" cy="104" r="11" fill="#ff5c8a"/><circle cx="428" cy="80" r="22" fill="#ffd36e" opacity=".22"/><circle cx="428" cy="80" r="11" fill="#ffd36e"/>
+  <g>
+    <rect x="318" y="160" width="156" height="104" rx="48" fill="#2ec4b6"/>
+    <path d="M436 250 L 474 300 L 404 262 Z" fill="#2ec4b6"/>
+    <circle cx="368" cy="212" r="11" fill="#0b2e2a"/><circle cx="398" cy="212" r="11" fill="#0b2e2a"/><circle cx="428" cy="212" r="11" fill="#0b2e2a"/>
+  </g>
+  <g filter="url(#tt-sh)">
+    <rect x="72" y="196" width="280" height="232" rx="84" fill="url(#tt-bub)"/>
+    <path d="M118 400 L 84 478 L 204 414 Z" fill="url(#tt-bub)"/>
+  </g>
+  <path transform="translate(129.0 388.9) scale(0.27 -0.27)" d="M53 50V323L32 376Q23 398 23 413Q23 431 41 446Q87 485 161.0 512.5Q235 540 318 540Q464 540 528.0 478.5Q592 417 592 312V50Q592 24 580.0 12.0Q568 0 539 0H442Q413 0 401.0 12.0Q389 24 389 50V316Q389 357 372.5 376.0Q356 395 317 395Q262 395 232 373L243 354Q250 341 253.0 328.5Q256 316 256 298V50Q256 24 243.5 12.0Q231 0 202 0H106Q77 0 65.0 12.0Q53 24 53 50Z" fill="#1a0f3d"/></g>
+</svg>

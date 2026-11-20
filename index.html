@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Thai Talk</title>
+<meta name="description" content="Learn conversational Thai by chatting with tutors in real-life scenes: street food, Grab rides, market haggling and office small talk.">
+<meta name="theme-color" content="#140d33">
+<meta name="color-scheme" content="dark">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Thai Talk">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<link rel="stylesheet" href="/css/fonts.css">
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="app" id="app">
+  <div class="lights" aria-hidden="true"><svg viewBox="0 0 400 26" preserveAspectRatio="none" id="lightsSvg"></svg></div>
+
+  <!-- HOME -->
+  <header class="top" id="topbar">
+    <div class="brand">Thai Talk <small>คุยไทย</small></div>
+    <div class="spacer"></div>
+    <span class="chip flame">🔥 <b id="hStreak">0</b></span>
+    <span class="chip xp">⭐ <b id="hXp">0</b></span>
+  </header>
+
+  <section class="view active" id="v-home"></section>
+  <section class="view" id="v-tutor"></section>
+  <section class="view scene-view" id="v-scene">
+    <div class="sbar">
+      <button class="xbtn" id="sClose" aria-label="Leave scene">✕</button>
+      <div class="prog"><i id="sProg"></i></div>
+      <button class="ctrl" id="sEnAll" aria-label="Show English on all lines">EN</button>
+    </div>
+    <div class="chat" id="chat"></div>
+    <div class="panel" id="panel"></div>
+  </section>
+  <section class="view" id="v-result"></section>
+  <section class="view" id="v-book"></section>
+  <section class="view" id="v-review"></section>
+  <section class="view" id="v-settings"></section>
+
+  <nav class="nav" id="nav">
+    <button data-go="home" class="on"><span class="i">🏮</span>Tutors</button>
+    <button data-go="book"><span class="i">📒</span>Phrasebook<span class="nb" id="navDue" hidden>0</span></button>
+    <button data-go="settings"><span class="i">⚙️</span>Settings</button>
+  </nav>
+
+  <div class="toast" id="toast"></div>
+  <div class="modal" id="modal"><div class="sheet" id="sheet"></div></div>
+  <div class="burst" id="burst"></div>
+</div>
+
+<script src="/js/content.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>
