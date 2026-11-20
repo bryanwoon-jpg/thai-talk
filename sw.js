@@ -1,6 +1,6 @@
 // Thai Talk service worker: precaches the whole app so lessons work offline once installed.
-// Bump CACHE_VERSION whenever you change any file listed in ASSETS.
-const CACHE_VERSION = 'v1';
+// Set CACHE_VERSION to the date (YYYY-MM-DD, add -2, -3 for extra same-day releases) whenever any file in ASSETS changes.
+const CACHE_VERSION = '2026-11-20';
 const CACHE = `thai-talk-${CACHE_VERSION}`;
 
 const ASSETS = [

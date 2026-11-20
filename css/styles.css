@@ -265,3 +265,10 @@ h2{font-family:var(--display);font-weight:500;font-size:20px;margin:22px 2px 12p
 .install-card .d{color:var(--muted);font-size:13px}
 .install-card .btn{min-height:42px;padding:0 16px}
 .install-card .ix{position:absolute;top:2px;right:4px;width:32px;height:32px;color:var(--dim);font-size:13px}
+
+/* new lessons */
+.new-cta{border-color:rgba(255,182,39,.45);background:linear-gradient(135deg,rgba(255,182,39,.16),rgba(46,196,182,.10))}
+.new-cta .ic{background:rgba(255,182,39,.2)}
+.badge.new{background:var(--lantern);color:#2a1700}
+.tag.newtag{background:rgba(255,182,39,.2);color:var(--lantern2)}
+.pill-new{display:inline-block;margin-left:8px;vertical-align:2px;background:var(--lantern);color:#2a1700;font-size:11px;font-weight:600;border-radius:99px;padding:2px 7px}

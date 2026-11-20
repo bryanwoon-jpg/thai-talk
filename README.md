@@ -41,6 +41,8 @@ index.html            App shell
 css/styles.css        Night-market theme
 css/fonts.css         Self-hosted Mitr + Prompt (Thai, Latin, Latin Extended)
 js/content.js         Tutors and lesson scripts (edit this to add lessons)
+TOPICS.md             Queue of topics for the daily lesson task
+scripts/              validate.mjs (content checks), smoke_test.py (plays every lesson)
 js/app.js             Game logic: lessons, tiles, speech, streaks, phrasebook
 sw.js                 Service worker (offline cache)
 manifest.webmanifest  PWA manifest
@@ -48,8 +50,21 @@ icons/                App icon (icon.svg is the source) and PNG sizes
 fonts/                WOFF2 files and their licenses (SIL OFL 1.1)
 ```
 
-## Adding a lesson
+## Daily lessons
 
-Add an entry to `SCENES` in `js/content.js`. Each turn holds the tutor's line plus three replies: `[thai, romanization, english, score, note]`, where the score is 2 for natural, 1 for okay and 0 for wrong. Okay and wrong replies need a note. Lessons unlock in order for each tutor.
+A scheduled task adds one new lesson every morning (Singapore time). It takes the first unticked topic in `TOPICS.md`, writes the lesson into `js/content.js` with an `added` date, checks it, and pushes to `main`, so Vercel redeploys on its own. In the app, the new lesson shows on the home screen with a **NEW** badge for 3 days, and daily lessons are open straight away.
 
-After changing any file, bump `CACHE_VERSION` in `sw.js` so installed copies pick up the update.
+To steer what comes next, edit `TOPICS.md`: reorder, add or delete lines.
+
+## Adding a lesson by hand
+
+Add an entry to `SCENES` in `js/content.js`. Each turn holds the tutor's line plus three replies: `[thai, romanization, english, score, note]`, where the score is 2 for natural, 1 for okay and 0 for wrong. Okay and wrong replies need a note. The first lessons for each tutor unlock in order. Lessons with an `added: "YYYY-MM-DD"` date are always open.
+
+Before pushing:
+
+```
+node scripts/validate.mjs          # content and structure checks
+python3 scripts/smoke_test.py      # plays every lesson headlessly (needs Playwright)
+```
+
+Then set `CACHE_VERSION` in `sw.js` to today's date so installed copies pick up the update. Open apps reload on their own once the new version is ready, but never mid-lesson.

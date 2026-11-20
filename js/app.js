@@ -11,6 +11,8 @@ const addDays = (d, n) => { const x = new Date(d+'T12:00:00'); x.setDate(x.getDa
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const tutorById = id => TUTORS.find(t => t.id === id);
 const sceneById = id => SCENES.find(s => s.id === id);
+/* A lesson counts as new for 3 days after its "added" date, until you've played it. */
+const isNewScene = sc => !!sc.added && !S.scenes[sc.id] && (Date.parse(today()) - Date.parse(sc.added)) / 864e5 <= 2;
 
 /* ---------- state ---------- */
 const LS_KEY = 'thaitalk.v1';
@@ -286,6 +288,15 @@ function renderHome(){
   v.append(rc);
   const ic2 = installCard(); if (ic2) v.append(ic2);
 
+  const fresh = SCENES.filter(isNewScene).sort((a,b) => (b.added||'').localeCompare(a.added||''));
+  if (fresh.length){
+    const sc = fresh[0]; const t = tutorById(sc.tutor);
+    const nc = el('button','review-cta new-cta'); const ic3 = el('div','ic', sc.emoji); const tx3 = el('div');
+    tx3.append(el('div','t','New lesson: ' + sc.title), el('div','d', 'with ' + t.name + ' · ' + sc.desc));
+    nc.append(ic3, tx3, el('span','badge new', fresh.length > 1 ? fresh.length + ' new' : 'NEW'));
+    nc.onclick = () => go('tutor', sc.tutor);
+    v.append(nc);
+  }
   v.append(el('h2', null, 'Find your Thai tutor'));
   v.append(el('div','sub','Native speakers, real-life conversations. Tap a tutor to book a lesson.'));
   TUTORS.forEach(t => v.append(tutorCard(t)));
@@ -297,6 +308,7 @@ function tutorCard(t){
   const info = el('div','tinfo');
   const nm = el('div','tname'); nm.append(document.createTextNode(t.name), el('span','th', t.th));
   const meta = el('div','tmeta'); meta.append(el('span','rating','★ ' + t.rating), el('span', null, t.lessons + ' lessons'), el('span','tag', t.topic));
+  if (SCENES.some(sc => sc.tutor === t.id && isNewScene(sc))) meta.append(el('span','tag newtag','✨ New lesson'));
   const lvl = el('div','lvl'); const bar = el('div','bar'); const fillb = el('i'); fillb.style.width = lp.pct + '%'; bar.append(fillb);
   const cap = el('div','cap'); const myScenes = SCENES.filter(s=>s.tutor===t.id); const stars = myScenes.reduce((a,s)=>a+((S.scenes[s.id]||{}).stars||0),0);
   cap.append(el('span', null, 'Level ' + lp.l + ' · ' + xp + ' XP'), el('span', null, '★ ' + stars + '/' + myScenes.length*3));
@@ -330,10 +342,11 @@ function renderTutor(id){
   const mine = SCENES.filter(s => s.tutor === t.id);
   mine.forEach((sc, i) => {
     const rec = S.scenes[sc.id]; const prev = i > 0 ? S.scenes[mine[i-1].id] : true;
-    const locked = !prev;
+    const locked = !prev && !sc.added; // daily lessons (with an added date) are always open
     const card = el('div','lesson' + (locked ? ' locked' : ''));
     const lt = el('div','lt'); const tx = el('div'); tx.style.flex = '1';
-    tx.append(el('div','ln', sc.title), el('div','ld', locked ? 'Finish "' + mine[i-1].title + '" to unlock.' : sc.desc));
+    const ln = el('div','ln', sc.title); if (isNewScene(sc)) ln.append(el('span','pill-new','NEW'));
+    tx.append(ln, el('div','ld', locked ? 'Finish "' + mine[i-1].title + '" to unlock.' : sc.desc));
     lt.append(el('div','le', locked ? '🔒' : sc.emoji), tx, starsHtml(rec ? rec.stars : 0));
     card.append(lt);
     if (!locked){
@@ -618,7 +631,7 @@ function renderResult(r){
   if (r.levelUp) notes.push('⬆️ ' + t.name + ' level ' + r.levelUp + '!');
   if (r.firstTime) notes.push('🧩 Tiles mode unlocked for this lesson');
   const mine = SCENES.filter(s => s.tutor === r.sc.tutor); const idx = mine.indexOf(r.sc);
-  if (r.firstTime && mine[idx+1]) notes.push('🔓 Unlocked: ' + mine[idx+1].title);
+  if (r.firstTime && mine[idx+1] && !mine[idx+1].added) notes.push('🔓 Unlocked: ' + mine[idx+1].title);
   notes.forEach(n => { const d = el('div','rs', n); d.style.marginBottom = '6px'; box.append(d); });
   const btns = el('div','rbtns');
   const next = mine[idx+1];
@@ -823,6 +836,15 @@ function installCard(){
 }
 if ('serviceWorker' in navigator && !window.claude && location.protocol !== 'file:'){
   window.addEventListener('load', () => { navigator.serviceWorker.register('/sw.js').catch(()=>{}); });
+  // When a new version (e.g. today's lesson) takes over, reload once, but never mid-lesson.
+  let reloaded = false, hadController = !!navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!hadController){ hadController = true; return; }
+    if (reloaded) return;
+    const doReload = () => { if (reloaded) return; reloaded = true; location.reload(); };
+    if (!scene && current !== 'review') doReload();
+    else { const iv = setInterval(() => { if (!scene && current !== 'review'){ clearInterval(iv); doReload(); } }, 2000); }
+  });
 }
 
 /* ---------- capabilities ---------- */
@@ -834,6 +856,7 @@ async function initCaps(){
 
 /* ---------- boot ---------- */
 if (!window.claude) dict = makeNativeDict();
+window.ThaiTalk = { startScene }; // used by scripts/smoke_test.py
 drawLights();
 go('home');
 function whenClaude(fn, n){ if (window.claude && window.claude.use) fn(); else if ((n||0) < 6) setTimeout(() => whenClaude(fn, (n||0)+1), 400); }
