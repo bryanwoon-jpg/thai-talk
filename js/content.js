@@ -331,7 +331,42 @@ const SCENES = [
        ["บายครับ","baai khráp","Bye.",1,"Very common! glàp bâan dii-dii (get home safe) shows you care."],
        ["สวัสดีตอนเช้าครับ","sà-wàt-dii dtawn cháao khráp","Good morning.",0,"It's late at night! Try glàp bâan dii-dii ná."]]}
   ],
-  outro:["บายค่ะ ขอบคุณสำหรับวันนี้นะ","baai khâ, khàwp-khun sǎm-ràp wan-níi ná","Bye! Thanks for today."] }
+  outro:["บายค่ะ ขอบคุณสำหรับวันนี้นะ","baai khâ, khàwp-khun sǎm-ràp wan-níi ná","Bye! Thanks for today."] },
+
+{ id:"fon3", tutor:"fon", emoji:"💬", added:"2026-11-22", title:"Weekend plans on LINE",
+  desc:"Suggest a plan, agree on a time, and invite a friend in the group chat.",
+  intro:"Thursday night. Fon posts in the office friends' LINE group to plan Saturday.",
+  turns:[
+  { t:["เสาร์นี้ใครว่างบ้างคะ","sǎo níi khrai wâang bâang khá?","Who's free this Saturday?"],
+    c:[["ผมว่างครับ ไปไหนกันดีครับ","phǒm wâang khráp, bpai nǎi gan dii khráp?","I'm free. Where shall we go?",2],
+       ["ว่างครับ","wâang khráp","Free.",1,"Clear! Add phǒm and keep it going: bpai nǎi gan dii khráp? (where shall we go?)"],
+       ["ผมว่ายน้ำครับ","phǒm wâai-náam khráp","I swim.",0,"Close sounds! wâang = free, wâai-náam = swim."]]},
+  { t:["ไปตลาดน้ำ หรือไปคาเฟ่แถวอารีย์ดีคะ","bpai dtà-làat náam rǔe bpai khaa-fêe thǎew aa-rii dii khá?","Floating market, or a café around Ari?"],
+    c:[["ผมว่าไปอารีย์ดีกว่าครับ ใกล้ดี","phǒm wâa bpai aa-rii dii gwàa khráp, glâi dii","I think Ari is better. It's close.",2],
+       ["อะไรก็ได้ครับ","à-rai gâw dâai khráp","Anything's fine.",1,"Easygoing, but group chats need a vote! Try phǒm wâa ... dii gwàa (I think ... is better)."],
+       ["ไปตลาดสดครับ","bpai dtà-làat sòt khráp","Let's go to the wet market.",0,"dtà-làat náam = floating market, dtà-làat sòt = fresh (wet) market."]]},
+  { t:["โอเค อารีย์ก็ได้ เจอกันกี่โมงดีคะ","oo-khee, aa-rii gâw dâai, joe gan gìi moong dii khá?","OK, Ari works. What time shall we meet?"],
+    c:[["สิบเอ็ดโมงดีไหมครับ จะได้กินข้าวเที่ยงด้วย","sìp-èt moong dii mǎi khráp? jà dâai gin khâaw thîang dûay","How about 11? Then we can have lunch too.",2],
+       ["สิบเอ็ดครับ","sìp-èt khráp","Eleven.",1,"Understood, but add moong for the time: sìp-èt moong dii mǎi khráp?"],
+       ["ห้าทุ่มดีไหมครับ","hâa thûm dii mǎi khráp?","How about 11 at night?",0,"hâa thûm is 11pm! For 11 in the morning, say sìp-èt moong."]]},
+  { t:["เช้าไปไหม ขอเป็นเที่ยงได้ไหมคะ","cháao bpai mǎi? khǎw bpen thîang dâai mǎi khá?","Isn't that a bit early? Can we make it noon?"],
+    c:[["ได้ครับ เที่ยงก็ได้ครับ","dâai khráp, thîang gâw dâai khráp","Sure, noon works too.",2],
+       ["ก็ได้","gâw dâai","Fine.",1,"On its own, gâw dâai can sound reluctant. dâai khráp sounds happier."],
+       ["เที่ยงคืนเหรอครับ","thîang khuen rǒe khráp?","Midnight?",0,"thîang = noon, thîang khuen = midnight."]]},
+  { t:["แล้วไปยังไงดี นั่งบีทีเอสไปไหมคะ","láew bpai yang-ngai dii? nâng bii-thii-èt bpai mǎi khá?","And how do we get there? Take the BTS?"],
+    c:[["นั่งบีทีเอสไปครับ ลงสถานีอารีย์","nâng bii-thii-èt bpai khráp, long sà-thǎa-nii aa-rii","Let's take the BTS and get off at Ari station.",2],
+       ["บีทีเอสครับ","bii-thii-èt khráp","BTS.",1,"Fine for a chat! The full phrase is nâng bii-thii-èt bpai (go by BTS)."],
+       ["นั่งอยู่ครับ","nâng yùu khráp","I'm sitting down.",0,"nâng ... bpai means go by a vehicle. nâng yùu just means you're sitting."]]},
+  { t:["มีใครอยากชวนใครมาด้วยไหม","mii khrai yàak chuan khrai maa dûay mǎi?","Anyone want to invite someone along?"],
+    c:[["ผมขอชวนเพื่อนมาอีกคนได้ไหมครับ","phǒm khǎw chuan phûean maa ìik khon dâai mǎi khráp?","Can I bring one more friend?",2],
+       ["เพื่อนผมครับ","phûean phǒm khráp","My friend.",1,"She'll get the idea. Ask it properly: khǎw chuan phûean maa ìik khon dâai mǎi khráp?"],
+       ["ไม่มีใครว่างครับ","mâi mii khrai wâang khráp","Nobody's free.",0,"chuan = invite. She asked if you want to bring someone, not who's free."]]},
+  { t:["ได้เลย ยิ่งเยอะยิ่งสนุก งั้นเที่ยงตรงเจอกันที่สถานีอารีย์นะ","dâai loei, yîng yóe yîng sà-nùk, ngán thîang dtrong joe gan thîi sà-thǎa-nii aa-rii ná","Sure, the more the merrier! So, noon sharp at Ari station."],
+    c:[["โอเคครับ เจอกันวันเสาร์ครับ","oo-khee khráp, joe gan wan sǎo khráp","OK, see you Saturday!",2],
+       ["รับทราบครับ","ráp sâap khráp","Noted.",1,"Very office-like! With friends, oo-khee, joe gan wan sǎo sounds warmer."],
+       ["เจอกันวันศุกร์ครับ","joe gan wan sùk khráp","See you Friday.",0,"sùk = Friday, sǎo = Saturday."]]}
+  ],
+  outro:["เจอกันค่ะ ห้ามมาสายนะ","joe gan khâ, hâam maa sǎai ná","See you! Don't be late."] }
 ];
 
 const HUH = [

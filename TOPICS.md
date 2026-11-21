@@ -16,10 +16,10 @@ Tutors: `noi` (food), `ton` (getting around), `lek` (shopping and errands), `fon
 - [x] fon | First day at the office | introductions, lunch invite, swapping LINE (fon1, 2026-11-20)
 - [x] fon | Friday moo kratha | evening plans, times, compliments, goodnight (fon2, 2026-11-20)
 - [x] noi | Coffee your way at a café | iced or hot, less sweet (wǎan nói), oat milk, takeaway cup (noi3, 2026-11-21)
+- [x] fon | Planning a weekend in the LINE group | suggesting plans, agreeing on a time, "anyone free?" (fon3, 2026-11-22)
 
 ## Up next
 
-- [ ] fon | Planning a weekend in the LINE group | suggesting plans, agreeing on a time, "anyone free?"
 - [ ] lek | Quick stop at 7-Eleven | heating food, a bag or not, paying by card or QR
 - [ ] ton | Motorbike taxi to the soi | price, holding on, "slow down please", stopping here
 - [ ] fon | Running late to a meeting | apologising, giving an ETA, "start without me"
